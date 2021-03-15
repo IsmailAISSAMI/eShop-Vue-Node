@@ -7,7 +7,7 @@ const userSchemaValidation = (req, res, next) => {
         city: Joi.string().required(),
         country: Joi.string().required(),
         zip: Joi.number().required()
-    });
+    }).unknown();
 
     const userValidationSchema = Joi.object({
         firstName: Joi.string().required(),
@@ -15,8 +15,8 @@ const userSchemaValidation = (req, res, next) => {
         phoneNumber: Joi.string().min(6).max(15).required(),
         address: addressSchema,
         email: Joi.string().email().required(),
-        password: Joi.string().min(6).regex(RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')).required(),
-        isAdmin = Joi.boolean().default('false').required(),
+        password: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$/).required(),
+        isAdmin: Joi.boolean().default('false'),
         orders: Joi.allow(null)
     });
     

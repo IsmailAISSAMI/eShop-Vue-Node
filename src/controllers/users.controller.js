@@ -10,8 +10,13 @@ exports.create = (req, res) => {
   const user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    phoneNumber: req.body.phoneNumber,
+    'address.street': req.body.street,
+    'address.city': req.body.city,
+    'address.country': req.body.country,
+    'address.zip': req.body.zip,
     email: req.body.email,
-    password: hashedPassword,
+    password: hashedPassword
   });
 
   user
@@ -34,7 +39,7 @@ exports.create = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         error: 500,
-        message: err.message || 'some error occured while creating user',
+        message: err.message || 'Some error occured while creating the USER!',
       });
     });
 };
