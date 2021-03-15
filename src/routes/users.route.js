@@ -4,10 +4,12 @@ const user = require('../controllers/users.controller');
 const verifyToken = require('../middlewares/verifyToken');
 const userSchemaValidation = require('../middlewares/validators/users.validator');
 
-router.post('/users', userSchemaValidation ,user.create);
-
+// Auth
 router.post('/users/login', user.login);
-
-router.get('/users/:id', verifyToken, user.findOne);
+// CRUD
+router.post('/users', userSchemaValidation ,user.create);
+router.get('/users/:id', user.findOne);
+router.patch('/users/:id', userSchemaValidation, user.update);
+router.delete('/users/:id', user.delete)
 
 module.exports = router;
