@@ -4,9 +4,10 @@ const user = require('../controllers/users.controller');
 const verifyToken = require('../middlewares/verifyToken');
 const userSchemaValidation = require('../middlewares/validators/users.validator');
 
-// Auth
+// Toutes ces routes nécessitent une autorisation
+//  -Auth
 router.post('/users/login', user.login);
-// CRUD
+//  -CRUD
 router.post('/users', userSchemaValidation ,user.create);
 router.get('/users/:id', user.findOne);
 router.patch('/users/:id', userSchemaValidation, user.update);
