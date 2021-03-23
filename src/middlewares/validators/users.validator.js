@@ -12,12 +12,18 @@ const userSchemaValidation = (req, res, next) => {
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     phoneNumber: Joi.string().min(6).max(15).required(),
-    // address: addressSchema,
-    street: Joi.string().required(),
-    city: Joi.string().required(),
-    country: Joi.string().required(),
-    zip: Joi.number().required(),
-    email: Joi.string().email().required(),
+    // address: Joi.object().required(),
+    address:Joi.object().keys({
+          street: Joi.string().required(),
+          city: Joi.string().required(),
+          country: Joi.string().required(),
+          zip: Joi.number().required()
+      }),
+    // street: Joi.string().required(),
+    // city: Joi.string().required(),
+    // country: Joi.string().required(),
+    // zip: Joi.number().required(),
+     email: Joi.string().email().required(),
     password: Joi.string()
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$/)
       .required(),
