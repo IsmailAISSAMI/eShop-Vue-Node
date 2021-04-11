@@ -10,6 +10,7 @@ router.post('/users/login', user.login);
 //  -CRUD
 router.post('/users', userSchemaValidation ,user.create);
 router.get('/users/:id', verifyToken,user.findOne);
+router.get('/users', verifyToken,user.getUsers);
 router.patch('/users/:id', userSchemaValidation, user.update);
 router.delete('/users/:id', user.delete)
 

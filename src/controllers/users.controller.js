@@ -101,6 +101,21 @@ exports.delete = async (req, res) => {
   }
 }
 
+
+exports.getUsers = (req, res) => {
+  User.find()
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `No user was found in database!`,
+        });
+      }
+      res.send(data);
+    })
+    .catch((err) => res.send(err));
+};
+
+
 exports.login = (req, res) => {
   User.findOne({
     email: req.body.email,
